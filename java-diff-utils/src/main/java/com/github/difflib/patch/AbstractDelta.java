@@ -71,6 +71,18 @@ public abstract class AbstractDelta<T> implements Serializable {
     protected abstract void restore(List<T> target);
     
     /**
+     * Apply patch fuzzy.
+     *
+     * @param target the list this patch will be applied to
+     * @param fuzz the count of elements which ignores prefix and suffix
+     * @param position the position this patch will be applied to. ignores {@code source.getPosition()}
+     */
+    @SuppressWarnings("RedundantThrows")
+    protected void applyFuzzyToAt(List<T> target, int fuzz, int position) throws PatchFailedException {
+        throw new UnsupportedOperationException(this.getClass().getSimpleName() + " does not supports applying patch fuzzy");
+    }
+
+    /**
      * Create a new delta of the actual instance with customized chunk data.
      */
     public abstract AbstractDelta<T> withChunks(Chunk<T> original, Chunk<T> revised);
